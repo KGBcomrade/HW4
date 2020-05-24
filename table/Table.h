@@ -7,22 +7,21 @@
 
 #include <vector>
 
-template <typename T>
 class Table {
 private:
-    std::vector<T> values;
+    std::vector<int> values;
 public:
     Table() = default;
-    explicit Table(std::vector<T> init);
-    void push(T value);
+    explicit Table(std::vector<int> init);
+    void push(int value);
     int pop();
     size_t getSize();
-    Table<T> operator+(const Table<T>& other);
-    Table<T> operator++();
-    Table<T> operator++(int);
-    Table<T> operator--();
-    Table<T> operator--(int);
-    T& operator[](size_t id);
+    Table operator+(Table& other);
+    Table operator++();
+    Table operator++(int);
+    Table operator--();
+    Table operator--(int);
+    int& operator[](size_t id);
 };
 
 

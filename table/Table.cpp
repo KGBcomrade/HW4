@@ -3,65 +3,59 @@
 //
 
 #include "Table.h"
-template<typename T>
-void Table<T>::push(T value) {
+
+#include <utility>
+void Table::push(int value) {
     values.push_back(value);
 }
 
-template<typename T>
-int Table<T>::pop() {
-    Table<T> res = values.back();
+int Table::pop() {
+    int res = values.back();
     values.pop_back();
     return res;
 }
 
-template<typename T>
-Table<T> Table<T>::operator+(const Table<T> &other) {
-    Table<T> res(values);
+Table Table::operator+(Table &other) {
+    Table res(values);
 
     for(int i = 0; i < other.getSize(); i++)
         res.push(other[i]);
+
+    return res;
 }
 
-template<typename T>
-Table<T>::Table(std::vector<T> init) {
-    values = std::vector<T>(init);
+Table::Table(std::vector<int> init) {
+    values = std::move(init);
 }
 
-template<typename T>
-size_t Table<T>::getSize() {
+size_t Table::getSize() {
     return values.size();
 }
 
-template<typename T>
-Table<T> Table<T>::operator++() {
+Table Table::operator++() {
     for(auto &i : values)
         i++;
     return *this;
 }
 
-template<typename T>
-Table<T> Table<T>::operator++(int) {
+Table Table::operator++(int) {
     auto res = *this;
     ++*this;
     return res;
 }
 
-template<typename T>
-Table<T> Table<T>::operator--() {
+Table Table::operator--() {
     for(auto &i : values)
         i--;
     return *this;
 }
 
-template<typename T>
-Table<T> Table<T>::operator--(int) {
+Table Table::operator--(int) {
     auto res = *this;
     ++*this;
     return res;
 }
 
-template<typename T>
-T &Table<T>::operator[](size_t id) {
+int &Table::operator[](size_t id) {
     return values[id];
 }
