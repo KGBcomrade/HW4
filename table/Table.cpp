@@ -16,12 +16,14 @@ int Table::pop() {
 }
 
 Table Table::operator+(Table &other) {
-    Table res(values);
+    std::vector<int> a;
+    a.reserve(getSize() + other.getSize());
 
-    for(size_t i = 0; i < other.getSize(); i++)
-        res.push(other[i]);
+    a.insert(a.end(),values.begin(), values.end());
+    a.insert(a.end(), other.values.begin(), other.values.end());
 
-    return res;
+
+    return Table(a);
 }
 
 Table::Table(std::vector<int> init) {
