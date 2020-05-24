@@ -18,7 +18,7 @@ int Table::pop() {
 Table Table::operator+(Table &other) {
     Table res(values);
 
-    for(int i = 0; i < other.getSize(); i++)
+    for(size_t i = 0; i < other.getSize(); i++)
         res.push(other[i]);
 
     return res;
